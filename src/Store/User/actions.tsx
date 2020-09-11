@@ -9,10 +9,11 @@ export const signUpSuccess = () => {};
 export function signUp(signUpData: SignUpData) {
   return async function (dispatch: Dispatch, getState: GetState) {
     try {
-      const res = await axios.get(`${DB_URL}`);
-      console.log('what is my data', res.data);
+      const res = await axios.post(`http://localhost:5000/auth/signup`, {
+        signUpData,
+      });
     } catch (e) {
-      console.log('error', e.message);
+      console.log('error', e);
     }
   };
 }

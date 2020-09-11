@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SignUpData } from '../../../Types/UserTypes';
 import { OnChange, OnClick } from '../../../Types/EventListenerTypes';
 import { useDispatch } from 'react-redux';
-
+import { signUp } from '../../../Store/User/actions';
 export default function SignUp() {
   const initialState = {
     firstName: '',
@@ -25,8 +25,6 @@ export default function SignUp() {
   const submitHandler = (event: OnClick) => {
     event.preventDefault();
     const { firstName, lastName, userName, email, password } = signUpData;
-    console.log('PW', password);
-    console.log('repeat PW', verifyPassword);
     if (
       !firstName ||
       !lastName ||
@@ -39,8 +37,7 @@ export default function SignUp() {
     } else if (password !== verifyPassword) {
       console.log('Password and password confirmation do not match');
     } else {
-      console.log('success!');
-      // dispatch(signUp(signUpData));
+      dispatch(signUp(signUpData));
     }
   };
 

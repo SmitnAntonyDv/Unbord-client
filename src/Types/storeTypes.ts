@@ -1,7 +1,7 @@
-import { SignUpData } from '../Types/UserTypes';
+import { User } from '../Types/UserTypes';
 
 export type ReduxStore = {
-  signUp: SignUpData;
+  user: User;
 };
 
 export type GetState = () => ReduxStore;
