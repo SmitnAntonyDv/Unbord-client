@@ -71,10 +71,10 @@ export default function SignUp() {
         <label>Verify your password</label>
         <input
           type='password'
-          name='password'
+          name='verifyPassword'
           required
           placeholder='Repeat Password'
-          value={signUpData.password}
+          value={verifyPassword}
           onChange={(event) => setVerifyPassword(event.target.value)}
         />
       </form>
