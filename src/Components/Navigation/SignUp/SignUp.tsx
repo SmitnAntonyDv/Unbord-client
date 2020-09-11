@@ -13,7 +13,7 @@ export default function SignUp() {
   };
   const [verifyPassword, setVerifyPassword] = useState('');
   const [signUpData, setSignUpData] = useState<SignUpData>(initialState);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onChangeHandler = (event: OnChange) => {
     setSignUpData({
@@ -37,7 +37,7 @@ export default function SignUp() {
     ) {
       console.log('Please ensure all fields are filled out');
     } else if (password !== verifyPassword) {
-      console.log('Please make sure the password is the same');
+      console.log('Password and password confirmation do not match');
     } else {
       console.log('success!');
       // dispatch(signUp(signUpData));
@@ -92,7 +92,7 @@ export default function SignUp() {
           value={signUpData.password}
           onChange={(event) => onChangeHandler(event)}
         />
-        <label>Verify your password</label>
+        <label>Password Confirm</label>
         <input
           type='password'
           name='verifyPassword'
