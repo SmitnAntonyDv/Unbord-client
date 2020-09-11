@@ -13,7 +13,7 @@ export default function SignUp() {
   };
   const [verifyPassword, setVerifyPassword] = useState('');
   const [signUpData, setSignUpData] = useState<SignUpData>(initialState);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const onChangeHandler = (event: OnChange) => {
     setSignUpData({
@@ -25,19 +25,22 @@ export default function SignUp() {
   const submitHandler = (event: OnClick) => {
     event.preventDefault();
     const { firstName, lastName, userName, email, password } = signUpData;
+    console.log('PW', password);
+    console.log('repeat PW', verifyPassword);
     if (
       !firstName ||
       !lastName ||
       !userName ||
       !email ||
-      password ||
-      verifyPassword
+      !password ||
+      !verifyPassword
     ) {
-      const message = 'Please ensure all fields are filled out';
+      console.log('Please ensure all fields are filled out');
     } else if (password !== verifyPassword) {
-      const message = 'Please make sure the password is the same';
+      console.log('Please make sure the password is the same');
     } else {
-      dispatch;
+      console.log('success!');
+      // dispatch(signUp(signUpData));
     }
   };
 
@@ -96,10 +99,12 @@ export default function SignUp() {
           required
           placeholder='Repeat Password'
           value={verifyPassword}
-          onChange={(event) => setVerifyPassword(event.target.value)}
+          onChange={(event) => setVerifyPassword(event.target.value.trim())}
         />
       </form>
-      <button type='submit'>Submit</button>
+      <button type='submit' onClick={submitHandler}>
+        Submit
+      </button>
       <button>X</button>
     </>
   );
