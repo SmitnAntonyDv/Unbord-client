@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { SignUpData } from '../../../Types/UserTypes';
+import { OnChange, OnClick } from '../../../Types/EventListenerTypes';
+import { useDispatch } from 'react-redux';
 
 export default function SignUp() {
   const initialState = {
@@ -11,15 +13,34 @@ export default function SignUp() {
   };
   const [verifyPassword, setVerifyPassword] = useState('');
   const [signUpData, setSignUpData] = useState<SignUpData>(initialState);
+  const dispatch = useDispatch();
 
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (event: OnChange) => {
     setSignUpData({
       ...signUpData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value.trim(),
     });
   };
 
-  console.log('signupData', signUpData);
+  const submitHandler = (event: OnClick) => {
+    event.preventDefault();
+    const { firstName, lastName, userName, email, password } = signUpData;
+    if (
+      !firstName ||
+      !lastName ||
+      !userName ||
+      !email ||
+      password ||
+      verifyPassword
+    ) {
+      const message = 'Please ensure all fields are filled out';
+    } else if (password !== verifyPassword) {
+      const message = 'Please make sure the password is the same';
+    } else {
+      dispatch;
+    }
+  };
+
   return (
     <>
       <form>
